@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticating...</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("hash")) {
+                localStorage.setItem("tg_auth", params.toString()); // Save auth data
+                window.location.href = "main.html";  // Redirect after login
+            } else {
+                window.location.href = "index.html"; // If no hash, back to login
+            }
+        });
+    </script>
+</head>
+<body>
+    <p>Authenticating... Please wait.</p>
+</body>
+</html>

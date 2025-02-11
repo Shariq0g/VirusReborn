@@ -1,1 +1,87 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
 
+/* Header */
+.header {
+    background: #ff0000;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Token Box */
+.token-container {
+    background: #222;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.wallet-btn {
+    background: black;
+    color: white;
+    border: 1px solid white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.token-box {
+    background: #ff0000;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+#token-logo {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Tasks */
+.tasks {
+    padding: 10px;
+}
+
+.task {
+    background: #333;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-btn, .check-btn {
+    background: white;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #000;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.nav-btn {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img id="user-photo" src="" alt="User Photo">
+            <h2 id="user-name">Loading...</h2>
+        </div>
+        <div class="tasks">
+            <h3>Airdrop Tasks</h3>
+            <ul>
+                <li><input type="checkbox"> Join Telegram Group</li>
+                <li><input type="checkbox"> Follow on Twitter</li>
+                <li><input type="checkbox"> Retweet & Like Post</li>
+            </ul>
+        </div>
+        <button id="claim-btn" disabled>Claim Airdrop</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

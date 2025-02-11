@@ -3,27 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <title>Virus Airdrop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="profile">
-            <img id="user-photo" src="" alt="User Photo">
-            <h2 id="user-name">Loading...</h2>
-        </div>
-        <div class="tasks">
-            <h3>Airdrop Tasks</h3>
-            <ul>
-                <li><input type="checkbox"> Join Telegram Group</li>
-                <li><input type="checkbox"> Follow on Twitter</li>
-                <li><input type="checkbox"> Retweet & Like Post</li>
-            </ul>
-        </div>
-        <button id="claim-btn" disabled>Claim Airdrop</button>
-        <button onclick="logout()">Logout</button>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>VIRUS 🦠</h1>
     </div>
-    <script src="main.js"></script>
+
+    <!-- Token Section -->
+    <div class="token-container">
+        <button class="wallet-btn">🔗 Connect Wallet</button>
+        <div class="token-box">
+            <img src="token.png" alt="Virus Token" id="token-logo">
+            <p class="token-amount">8,200.0028 VIRUS</p>
+            <p class="apy">APY - 100% | 0.00026002 per sec</p>
+        </div>
+    </div>
+
+    <!-- Tasks Section -->
+    <div class="tasks">
+        <div class="task">
+            <span>📢 Join Telegram Channel</span>
+            <button class="start-btn">Start</button>
+        </div>
+        <div class="task">
+            <span>🔗 Connect Wallet</span>
+            <button class="check-btn">Check</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <button class="nav-btn">🏠 Referral</button>
+        <button class="nav-btn">💰 Wallet</button>
+        <button class="nav-btn">🏆 Leaderboard</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

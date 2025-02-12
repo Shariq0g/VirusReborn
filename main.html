@@ -3,46 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virus Airdrop</title>
-    <link rel="stylesheet" href="Homestyle.css">
+    <title>Mini App</title>
+    <link rel="stylesheet" href="Homestyles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
 </head>
 <body>
 
-    <!-- Header (Username & Avatar) -->
-    <div class="header">
-        <img src="avatar.png" alt="User Avatar" class="avatar">
-        <span id="username">User123</span>
+    <div id="particles-js"></div>
+
+    <div class="top-bar">
+        <img id="userAvatar" src="default-avatar.png" alt="User Avatar">
+        <span id="username">Loading...</span>
     </div>
 
-    <!-- Token Section -->
-    <div class="token-container">
-        <button class="wallet-btn">🔗 Connect Wallet</button>
-        <div class="token-box">
-            <img src="token.png" alt="Virus Token" id="token-logo">
-            <p class="token-amount">8,200.0028 VIRUS</p>
-            <p class="apy">APY - 100% | 0.00026002 per sec</p>
+    <div class="main-container">
+        <div class="balance-card">
+            <img id="virusLogo" src="virus-icon.png" alt="Virus Logo">
+            <h2 id="userBalance">0 VIRUS</h2>
+            <button onclick="connectWallet()">Connect Wallet</button>
         </div>
     </div>
 
-    <!-- Tasks Section -->
-    <div class="tasks">
-        <div class="task">
-            <span>📢 Join Telegram Channel</span>
-            <button class="start-btn">Start</button>
-        </div>
-        <div class="task">
-            <span>🔗 Connect Wallet</span>
-            <button class="check-btn">Check</button>
-        </div>
-    </div>
-
-    <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <button class="nav-btn">🏠 Referral</button>
-        <button class="nav-btn">💰 Wallet</button>
-        <button class="nav-btn">🏆 Leaderboard</button>
+        <a href="#"> <img src="icons/referral.png" alt="Referral"> Referral </a>
+        <a href="#"> <img src="icons/wallet.png" alt="Wallet"> Wallet </a>
+        <a href="#"> <img src="icons/leaderboard.png" alt="Leaderboard"> Leaderboard </a>
     </div>
 
-    <script src="Homescript.js"></script>
+    <script>
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBj_XFwSi9CATeMpMZdKQoQRd",
+            authDomain: "virus-945ac.firebaseapp.com",
+            databaseURL: "https://virus-945ac-default-rtdb.firebaseio.com",
+            projectId: "virus-945ac",
+            storageBucket: "virus-945ac.firebasestorage.app",
+            messagingSenderId: "248199210206",
+            appId: "1:248199210206:web:a2053fd638d8274103ce4f"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        function fetchUserData() {
+            const userId = "USER_ID";  // Replace with dynamic user ID
+
+            database.ref("users/" + userId).once("value", (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.getElementById("username").innerText = data.username;
+                    document.getElementById("userBalance").innerText = data.balance + " VIRUS";
+                    document.getElementById("userAvatar").src = data.avatarURL;
+                } else {
+                    console.log("User data not found");
+                }
+            });
+        }
+
+        function connectWallet() {
+            alert("Wallet Connected!");
+        }
+
+        // Logo Rotate on Slide
+        document.getElementById("virusLogo").addEventListener("mouseenter", () => {
+            document.getElementById("virusLogo").style.transform = "rotate(360deg)";
+            document.getElementById("virusLogo").style.transition = "all 0.5s";
+        });
+
+        fetchUserData();
+    </script>
+
+    <script src="particles.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 50 },
+                size: { value: 3 },
+                move: { speed: 0.5 }
+            }
+        });
+    </script>
+
 </body>
 </html>

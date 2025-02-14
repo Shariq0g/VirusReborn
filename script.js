@@ -1,39 +1,41 @@
-// ✅ Supabase Initialize karo
-const supabase = supabase.createClient(
-    "https://goyxtmubqhwilshcvqsp.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdveXh0bXVicWh3aWxzaGN2cXNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk1MzU1MjgsImV4cCI6MjA1NTExMTUyOH0.fXQ_rsAlEBRCe7Bw947n4XyNDz2vPl_T_cFxFhA1Mks"
-);
+// 🛠️ Supabase Client Setup
+const { createClient } = supabase;
+const supabaseUrl = "https://goyxtmubqhwilshcvqsp.supabase.co";  // <-- Replace this!
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";  // <-- Replace this!
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-// ✅ User ka Balance Fetch karna
-async function fetchBalance(username) {
-    try {
-        const { data, error } = await supabase
+// 🚀 Telegram Mini App Init
+const tg = window.Telegram.WebApp;
+tg.expand(); // Fullscreen enable
+
+// 🏷️ User info fetch
+const userData = tg.initDataUnsafe.user;
+if (!userData) {
+    document.getElementById("loading").innerText = "Failed to load user data!";
+} else {
+    const userId = userData.id;
+    const username = userData.username || `User_${userId}`;
+
+    // 🔄 Fetch User Balance from Supabase
+    async function fetchUserBalance() {
+        let { data: user, error } = await supabaseClient
             .from("users")
             .select("balance")
-            .eq("username", username)
+            .eq("user_id", userId)
             .single();
 
-        if (error) throw error;
-        document.getElementById("balance").innerText = `Balance: ${data.balance}`;
-        document.getElementById("loading").innerText = "";
-    } catch (err) {
-        console.error("Error fetching balance:", err.message);
-        document.getElementById("loading").innerText = "Failed to load balance.";
+        if (error || !user) {
+            console.log("User not found, inserting new user...");
+            await supabaseClient.from("users").insert([{ 
+                user_id: userId, 
+                username: username, 
+                balance: 0 
+            }]);
+            document.getElementById("balance").innerText = "Balance: 0";
+        } else {
+            document.getElementById("balance").innerText = `Balance: ${user.balance}`;
+        }
     }
+
+    fetchUserBalance();
 }
-
-// ✅ Telegram Username Fetch karo
-async function initApp() {
-    const tg = window.Telegram.WebApp;
-    tg.expand();  // Fullscreen Mode
-
-    const username = tg.initDataUnsafe?.user?.username;
-    if (username) {
-        fetchBalance(username);
-    } else {
-        document.getElementById("loading").innerText = "Telegram Login Required!";
-    }
-}
-
-// ✅ App Initialize karo
-window.onload = initApp;

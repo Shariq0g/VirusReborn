@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Mini App</title>
+    
+    <!-- Telegram SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+    <script src="firebase.js"></script> <!-- Firebase Config -->
+
     <style>
-        <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
-<script src="firebase.js"></script> <!-- Firebase Config -->
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -23,30 +27,13 @@
     </style>
 </head>
 <body>
+
     <h2>Welcome to VirusReborn Mini App</h2>
     <div id="user-info">
         <p>Loading...</p>
     </div>
-    
+
     <script>
-        <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand(); // Fullscreen mode
-
-    const userData = tg.initDataUnsafe.user;
-    if (userData) {
-        document.getElementById("user-info").innerHTML = `
-            <p><strong>Username:</strong> @${userData.username}</p>
-            <p><strong>ID:</strong> ${userData.id}</p>
-            <img src="${userData.photo_url}" width="100" height="100" style="border-radius: 50%;">
-        `;
-
-        // ✅ User Data Firebase Me Save Karo
-        saveUserData(userData);
-    } else {
-        document.getElementById("user-info").innerHTML = "<p>User data not available</p>";
-    }
-</script>
         const tg = window.Telegram.WebApp;
         tg.expand(); // Fullscreen mode
 
@@ -57,9 +44,13 @@
                 <p><strong>ID:</strong> ${userData.id}</p>
                 <img src="${userData.photo_url}" width="100" height="100" style="border-radius: 50%;">
             `;
+
+            // ✅ User Data Firebase Me Save Karo
+            saveUserData(userData);
         } else {
             document.getElementById("user-info").innerHTML = "<p>User data not available</p>";
         }
     </script>
+
 </body>
 </html>

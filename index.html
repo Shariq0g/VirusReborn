@@ -29,6 +29,24 @@
     </div>
     
     <script>
+        <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // Fullscreen mode
+
+    const userData = tg.initDataUnsafe.user;
+    if (userData) {
+        document.getElementById("user-info").innerHTML = `
+            <p><strong>Username:</strong> @${userData.username}</p>
+            <p><strong>ID:</strong> ${userData.id}</p>
+            <img src="${userData.photo_url}" width="100" height="100" style="border-radius: 50%;">
+        `;
+
+        // ✅ User Data Firebase Me Save Karo
+        saveUserData(userData);
+    } else {
+        document.getElementById("user-info").innerHTML = "<p>User data not available</p>";
+    }
+</script>
         const tg = window.Telegram.WebApp;
         tg.expand(); // Fullscreen mode
 

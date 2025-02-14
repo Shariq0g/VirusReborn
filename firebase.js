@@ -27,15 +27,3 @@ function saveUserData(user) {
     .then(() => console.log("✅ User data saved"))
     .catch(error => console.error("❌ Firebase Error:", error));
 }
-
-// ✅ Fetch Data Function
-function fetchUserData(userId) {
-    db.ref("users/" + userId).once("value")
-    .then(snapshot => {
-        if (snapshot.exists()) {
-            console.log("👤 User Data:", snapshot.val());
-        } else {
-            console.log("❌ User not found");
-        }
-    });
-}

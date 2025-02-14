@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+        #user-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome to VirusReborn Mini App</h2>
+    <div id="user-info">
+        <p>Loading...</p>
+    </div>
+    
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Fullscreen mode
+
+        const userData = tg.initDataUnsafe.user;
+        if (userData) {
+            document.getElementById("user-info").innerHTML = `
+                <p><strong>Username:</strong> @${userData.username}</p>
+                <p><strong>ID:</strong> ${userData.id}</p>
+                <img src="${userData.photo_url}" width="100" height="100" style="border-radius: 50%;">
+            `;
+        } else {
+            document.getElementById("user-info").innerHTML = "<p>User data not available</p>";
+        }
+    </script>
+</body>
+</html>
